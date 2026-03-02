@@ -1,0 +1,271 @@
+Themes to discust about:
+    1. Sprite (drawing tools, fps speed, rotation center, collision mask).
+
+---------GameMaker Tutorial---------
+
+    When opening the software, and creating a new empty file, you catch yourself with the Toolbar (Located above, where you can run the game), Inspector (Located left, where you can see and change the properties of the asset you've selected), Output Window (Located below, where you can see any errors or debug messages), Asset Browser (Located right, where you create and organise your game's assets/objects like images/sprites, code and rooms/game levels), and finally, the Workspace (Located in the middle)
+    When creating a sprite, you can choose the canvas size, create the visual using brushs and even create a brush using Ctrl + C. For animating, you can choose the FPS (Frames per Second) value and add new frames as much as you want.
+    When creating an object, you can asset a name, sprite and events, inside an event you can script what will happen envolving the object.
+    When creating a room, you have instances and background. The background is where your character will be displayed above it, without collisions, like a floor. The Instances is where you can put your objects, it can eigther be a character or furnitures, for example.
+
+Coding
+    Variable is a storage location in the computer's memory paired with a name, that contains data. When naming a variable, you can put letters (which are case sensitive), numbers and underscores, remember that you hav to make clear and descriptive names, with readability and consistency. To set a variable:
+
+player_name = "link";
+player_health = 3;
+player_weapon = "sword";
+
+    To use (reference) Data:
+
+show_degub_message(player_name);
+show_degub_message(player_health);
+show_degub_message(player_weapon);
+
+    Data Type is an attribute of the data which tells a comuter how to treat that data, it defines the operations to treat that data. The common data types are: strings, real numbers, booleans and arrays. The less common data types are Enums and Undefined. The rare data types are Nan, Infinity, Hexadecimals and Pointers.
+    1. String is a text, defined by quotation marks ("").
+    2. Real Numbers are defined by any number (positive, negative, etc).
+    3. A Boolean is  avalue that can be either true or false
+    4. Arrays are a type of data that holds other types of datas, it is a reference to the data. They're defined by brakets [], dividing each data with ", ".
+
+    Variable Scope is the place where you can validly reference variable by name, it allows variables to have the same name. There are three scope categories: global, instance and local.
+    1. The Global Scope can be accessed by everything, have a special declaration and remain in memory until the game ends. (global.example)
+    2. The Instance Scope are created within an instance of an object, unique to that instance.
+    3. The Local Scope are created for a specific event or script, have a special declaration (var example) discarded when the event has finished.
+
+    Enum is a custom data type, a named integer, referenced anywhere, you get to name a number. They're useful for readable, searchable and maintainable code, for example: player_state = states.idle instead of player_state = 0 or 1. A Enum can be created everywhere, must be unique and cannot be changed after the game is compiled. When creating an Enum:
+
+enum player_states {
+    idle,  // automatically means 0
+    walk,  // automatically means 1
+    run,   // automatically means 2
+    attack // automatically means 3
+}
+
+enum inventory_slots {
+    name = 0   // you're defining it equals to 0
+    amount = 1 // you're defining it equals to 1
+}
+
+    After creating a Enum, you can use it by:
+// same as saying state = 0;
+state = player_states.idle;
+
+// same as saying item_name = inventory_array[0];
+item_name = inventory_array[inventory_slots.name];
+
+    Macro is a single word that stands for something else, such as a single value or a complex expression, they are a text replacement (copy and paste), constants (cannot be changed). They're efficient because of readable, searchable and maintainable code, for example: item = NONE; or, for example: if (COIN_FLIP) {}. A Macro can be created anywhere, must be unique and cannot be changed after the game is compiled. To create a Macro:
+
+// #macro name replacement_text
+#macro NONE -1
+#macro SETUP_EVENT 0
+#macro PAUSE_EVENT 10
+#macro MY_PI 3.14
+#macro BLUE $FF0000
+#macro FLIP_COIN choose(true, false)
+
+    Macro examples:
+
+// using a macro instead of hex code
+image_blen = BLUE;
+
+// using a macro to shorten things
+if (FLIP_COIN) {
+    // do a thing
+}
+
+    The difference about Macros and Enums is that Enums are a data type and named integers, while Macros are text replacement and can be used for complex expressions.
+
+    When coding in GML, it's fudamanetal to mention the official manual of GameMaker Studio 2 as reference, you can find it online (https://docs2.yoyogames.com/) or in the software itself (Help -> Open Manual or F1 Shortcut). 
+
+    Code Style is important for rules and guidelines that defines the way your code looks.
+    Bad example of a code style
+
+var p,h;
+p=id
+h=ret_ph(p)
+if(h<=0)
+{
+instance_destroy(p);
+if ret_pl(p)>0{
+sub_pl(p);
+spawn(p);
+{else
+}
+elim_p(p);
+}
+
+}
+
+    Good example of a code style
+
+// check_player_health(player_id)
+var current_player, player_health;
+
+current_player = player_id;
+player_health = return_player_health(current_player);
+
+// destroy player, if health equal to or less than zero
+if (player_health <= 0) {
+    instance_destroy(current_player);
+
+        // respawn player if lives are greater than 0
+        if (return_player_lives(current_player) > 0) {
+                subtract_player_lives(current_player);
+                spawn_new_player_character(current_player);
+        } else {
+            eliminate_player(current_player);
+        }
+}
+
+    Coding Style matters even if you're coding solo (by yourself), like when asking for help on the forum, hiring freelancer, freelancing, finding a partner and your future self when reading the code after a long time.
+    A Good Code Style is a code that is easy to understand, no right or wrong answer, no one true style, but better and worse answers, and mainly readability through consistency.
+    The basic elements to consider a Good Code Style are Indentation, Whitescpace, Capitalization, Naming and Comments.
+    1.0 K & R Indentation:
+
+if (foo) {
+    bar();
+    while (baz(a, b, c)) {
+        qux();
+    }
+}
+
+    1.1 Allman Indentation:
+
+if (foo)
+{
+    bar();
+    while (baz(a, b, c))
+    {
+        qux();
+    }
+}
+
+    2.0 Whitespace:
+
+// with white space
+for (var i = 0; i < 10; i++) {
+    show_debug_message("index equals " + string(i));
+}
+
+// no white space
+for(var i=0;i<10;i++) {
+        show_debug_message("index equals "+string(i));
+}
+
+    3.0 Capitalization:
+// snake case
+variable
+variable_name
+another_variable_name
+
+// camel case
+variable
+variableName
+anotherVariableName
+
+    4.0 Name Conventions:
+// Descriptive names with type Prefixes
+obj_player
+spr_player
+ts_montains
+shd_day_night_cycle
+fnt_title_large
+scr_increase_player_score
+
+    5.0 Comments: Placement of comments, point of comments, tips and tricks.
+    5.1 Comment Placement:
+// loop through values 0-9 and print output in console window
+for (var i = 0; i < 10; i++) {
+    show_debug_message("index equals " + string(i));
+}
+
+for (var i = 0; i < 10; i++) { // loop through values 0-9
+    show_debug_message("index equals " + string(i)); // print output in console
+}
+
+for (var i = 0; i < 10; i++) {                        // loop through values 0-9
+    show_debug_message("index equals " + string(i));  // print output in console
+}
+
+    5.2 Comments Tips and Tricks: wrie your comment first, Control + K and Control + Shift + K, /* alternative comments */.
+
+/*
+anything between these brackets is a comment!
+now you can comment our multiple lines!
+*/
+
+    6.0 GML Flexibility:
+// no parentheses and all in the same line
+if right && up variable++
+
+// parentheses, brackets, and new line
+if (right && up) {
+    variable++;
+}
+
+// parentheses, no brackets, and a new line
+if right and up
+    variable++
+
+    Booleans are a thing which can have one of two values (true or false), for example: the statement "two plus two equal to four" can be true or false. The Boolean logic is an evaluation of truth or falsity of a combination of one or more true or false statements, for example: If it is raining or the sprinkler is on, the grass will be wet. The Boolean Operators are And (&&), Or (||), Xor (^^) and Not (!).
+
+    For example:
+A is true
+B is false
+
+    Not:
+A (true)
+!A (false)
+
+B (false)
+!B (true)
+
+    And:
+A (true), B (true), A && B (true)
+A (true), B (false), A && B (false)
+A (false), B (true), A && B (false)
+A (false), B (false), A && B (false)
+
+    Or:
+A (true), B (true), A || B (true)
+A (true), B (false), A || B (true)
+A (false), B (true), A || B (true)
+A (false), B (false), A || B (false)
+
+    Xor:
+A (true), B (true), A ^^ B (false)
+A (true), B (false), A ^^ B (true)
+A (false), B (true), A ^^ B (true)
+A (false), B (false), A ^^ B (false)
+
+    The Boolean Equivalency is some logical statements that can be phrased in multiple, equivalent ways, it has Associativity , Distributivy and DeMorgan's Law.
+    1. Associativity:
+
+---------Keyboard Shortcuts---------
+    Inside Toolbar
+Run Game - F5
+
+    Inside Inspector
+.
+
+    Inspide Output Window
+.
+
+    Inside Asset Browser
+.
+
+    Inside Workscape
+.
+
+    Inside Sprite Editor
+Select Different Frames - 1,2,3,...
+Create Sprite Brush - Ctrl + C
+
+
+
+pause = false;
+pauseSurf = -1;
+pauseSurfBuffer = -1;
+
+resW = 1024;
+resH = 768;
