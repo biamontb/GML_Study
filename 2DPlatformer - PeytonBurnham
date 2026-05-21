@@ -1,3 +1,11 @@
 How to Make a 2D Platformer
-1. Basic Platformer Logic + Precise Collisions
-2. Jump Height   
+  1. Basic Platformer Logic + Precise Collisions
+  2. Jump Height Control + Double Jumping + Input Buffering
+  3. Camera System (Optional)
+  4. Coyote Time
+  5. Running / Sprinting + Sprite Control
+  6. Slopes
+  7. Semi-Solid / One Way Platform + Moving Semi-Solid Platforms
+
+Note
+- Make sure the "Collision Compatibility Mode" is OFF (Find it on Game Options -> Main Options -> General)
